@@ -1,0 +1,46 @@
+Pull an image
+
+	docker pull <image_name>:<image_tag>
+
+Check all images downloaded
+
+	docker image list
+
+Create a new container (by connecting the network with 'local_host', sharing a common folder 'shared_folder' and building on top of 'image_name')
+
+	docker create -it -v <shared_folder_host>:<shared_folder_container> --net=host <image_name>:<image_tag> bash
+
+Check all containers
+
+	docker ps -a
+
+Check running containers
+
+	docker ps
+
+Start a docker container
+
+	docker start <container_name>
+
+Attach a running docker container to current bash terminal
+
+	docker exec -it <container_name> bash
+
+Stop a docker container
+
+	docker stop <container_name>
+
+Commint a container as an image
+
+	docker commit <container_name> <image_name>:<image_tag>
+
+Remove a docker container
+
+	docker rm <container_name>
+
+Remove a docker image
+
+	docker rmi <image_name>:<image_tag>
+
+NOTE: Use 'nvidia-docker' instead of 'docker' to allow use of nvidia GPU inside the container
+NOTE: To get a coloured bash, uncomment '#force_color_prompt=yes' line in ~/.bashrc
