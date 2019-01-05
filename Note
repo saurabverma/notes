@@ -43,4 +43,6 @@ Remove a docker image
 	docker rmi <image_name>:<image_tag>
 
 NOTE: Use 'nvidia-docker' instead of 'docker' to allow use of nvidia GPU inside the container
+Update: Especially for nvidia-docker2, replace 'docker create' with 'docker run --runtime=nvidia' (see details on https://github.com/nvidia/nvidia-d
+NOTE: Details of running GUI from within docker are well explained on http://wiki.ros.org/docker/Tutorials/GUI
 NOTE: To get a coloured bash, uncomment '#force_color_prompt=yes' line in ~/.bashrc
