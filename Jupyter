@@ -1,0 +1,65 @@
+NOTE: Ideally Jupyter is to be run from inside a docker container created with common network with the host PC
+
+Install jupyter
+	pip install jupyter
+	pip3 install jupyter
+
+Set the password for login
+	jupyter notebook password
+
+Setup the default folders
+	jupyter notebook --notebook-dir=<docker_home_dir>
+
+Start the notebook at <port_number_host>
+	jupyter notebook --no-browser --allow-root --port=<port_number_host>
+
+If Jupyter is runing on a remote host PC, attach its port to a desired port on the local guest PC (run the following command on the local guest PC)
+	ssh -N -L localhost:<port_number_guest>:localhost:<port_number_host> <user_name>@<host_IP> &
+
+Access the notebook at the following in a browser (<host_IP>='localhost' on local PC or an IP address {accessing using 'ifconfig | grep addr' bash command} on a remote PC on the same newtwork)
+	http://<host_IP>:<port_number_host>/
+
+Stop the 
+	pkill -o jupyter
+
+
+
+
+
+
+
+
+
+
+For easy access, add the following to ~/.bashrc (on the local guest PC)
+
+	alias docker_jupyter_start='ssh -t <user_name>@<remote_host_IP> "docker start <docker_container> && docker exec -id <docker_container> /root/.jupyter_start" && ssh -N -L localhost:<port_number_guest>:localhost:<port_number_host> <user_name>@<host_IP>'
+	alias docker_bash_connect='ssh -t <user_name>@<remote_host_IP> "docker start <docker_container> && docker exec -it <docker_container> bash"'
+	alias docker_jupyter_stop='ssh -t <user_name>@<remote_host_IP> "docker start <docker_container> && docker exec -id <docker_container> /root/.jupyter_stop"'
+	alias docker_stop='ssh -t <user_name>@<remote_host_IP> "docker stop <docker_container>"'
+
+
+
+
+
+
+
+
+
+
+where the files placed in the docker root folder are
+1. /root/.jupyter_start
+
+	#!/bin/bash
+	
+	if ! jupyter notebook list | grep 'localhost:<port_number_host>'; then
+	        jupyter notebook --allow-root --no-browser --port=<port_number_host> &
+	fi
+
+2. /root/.jupyter_stop
+
+	#!/bin/bash
+	
+	if jupyter notebook list | grep 'localhost:<port_number_host>'; then
+	        pkill -o jupyter
+	fi
