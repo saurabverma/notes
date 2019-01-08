@@ -47,5 +47,5 @@ Update: Especially for nvidia-docker2, replace 'docker create' with 'docker run 
 NOTE: Details of running GUI from within docker are well explained on http://wiki.ros.org/docker/Tutorials/GUI
 NOTE: To get a coloured bash, uncomment '#force_color_prompt=yes' line in ~/.bashrc
 NOTE: For ease in use, add the following to your ~/.bashrc file
-	alias docker_<tag>='if docker ps | grep <container_name>; then docker exec -it <container_name> bash; else docker start <container_name> && docker exec -it <container_name> bash; fi'
+	alias docker_<tag>='docker start <container_name> && docker exec -it <container_name> bash'
 	alias docker_<tag>_stop='docker stop <container_name>'
