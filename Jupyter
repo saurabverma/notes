@@ -38,6 +38,11 @@ For easy access, add the following to ~/.bashrc (on the local guest PC)
 	alias docker_jupyter_stop='ssh -t <user_name>@<remote_host_IP> "docker start <docker_container> && docker exec -id <docker_container> /root/.jupyter_stop"'
 	alias docker_stop='ssh -t <user_name>@<remote_host_IP> "docker stop <docker_container>"'
 
+NOTE: For information only
+	# Connect terminal: ssh <user_name>@<remote_host_IP>
+	# Get a file: 'scp <user_name>@<remote_host_IP>:<remote_file_name> <local_folder_name>'
+	# Put a file: 'scp <local_file_name> <user_name>@<remote_host_IP>:<remote_folder_name>'
+
 
 
 
