@@ -42,6 +42,7 @@ NOTE: For information only
 	# Connect terminal: ssh <user_name>@<remote_host_IP>
 	# Get a file: 'scp <user_name>@<remote_host_IP>:<remote_file_name> <local_folder_name>'
 	# Put a file: 'scp <local_file_name> <user_name>@<remote_host_IP>:<remote_folder_name>'
+	# Use ssh-keygen for easy access (https://www.digitalocean.com/community/tutorials/how-to-set-up-ssh-keys-on-ubuntu-1604)
 
 
 
