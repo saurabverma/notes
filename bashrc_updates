@@ -1,0 +1,31 @@
+
+# uncomment for a colored prompt, if the terminal has the capability; turned
+# off by default to not distract the user: the focus in a terminal window
+# should be on the output of commands, not on the prompt
+force_color_prompt=yes
+
+# Easy access to docker
+alias docker_jupyter_start='ssh -t <use_name>@<remote_host_IP> "docker start <container_name> && docker exec -id <container_name> /root/.jupyter_start" && printf "Do NOT close this terminal, connecting to Jupyter in Docker...\n" && ssh -N -L localhost:<local_port_number>:localhost:<remote_port_number> <use_name>@<remote_host_IP>'
+alias docker_bash_connect='ssh -t <use_name>@<remote_host_IP> "docker start <container_name> && docker exec -it <container_name> bash"'
+alias docker_jupyter_stop='ssh -t <use_name>@<remote_host_IP> "docker start <container_name> && docker exec -id <container_name> /root/.jupyter_stop"'
+alias docker_stop='ssh -t <use_name>@<remote_host_IP> "docker stop <container_name>"'
+
+# Accessing remote host PC
+alias ssh_remote='ssh <use_name>@<remote_host_IP>'
+# Get a file: 'scp -r <use_name>@<remote_host_IP>:<remote_file_name> <local_folder_name>'
+function scp_get_remote
+{
+	scp -r <use_name>@<remote_host_IP>:$1 $2
+}
+# Put a file: 'scp -r <local_file_name> <use_name>@<remote_host_IP>:<remote_folder_name>'
+function scp_put_remote
+{
+	scp -r $1 <use_name>@<remote_host_IP>:$2
+}
+
+alias c='clear'
+alias r='reset'
+alias h='history'
+alias hg='history | grep'
+# Use 'Ctrl+r' for search of specific command in history
+
