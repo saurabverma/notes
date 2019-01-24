@@ -6,9 +6,18 @@ Check all images downloaded
 
 	docker image list
 
-Create a new container (by connecting the network with 'local_host', sharing a common folder 'shared_folder' and building on top of 'image_name')
+Create a new container (by connecting the network with 'local_host',
+sharing display for GUI with 'local_host',
+sharing nvidia drivers with the container (requires nvidia-docker2 installed),
+sharing a common folder 'shared_folder' and building on top of 'image_name')
 
-	docker create -it -v <shared_folder_host>:<shared_folder_container> --net=host <image_name>:<image_tag> bash
+	docker run -it \
+	-e DISPLAY=$DISPLAY \
+	--runtime=nvidia \
+	-v <shared_folder_host>:<shared_folder_container> \
+	--net=host \
+	<image_name>:<image_tag> \
+	bash
 
 Check all containers
 
@@ -42,8 +51,9 @@ Remove a docker image
 
 	docker rmi <image_name>:<image_tag>
 
-NOTE: Use 'nvidia-docker' instead of 'docker' to allow use of nvidia GPU inside the container
-Update: Especially for nvidia-docker2, replace 'docker create' with 'docker run --runtime=nvidia' (see details on https://github.com/nvidia/nvidia-d
+NOTE: To allow use of nvidia GPU usage inside the container,
+	add '--runtime=nvidia' to the 'docker run' command while creating a new container,
+	see details on https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-2.0)
 NOTE: Details of running GUI from within docker are well explained on http://wiki.ros.org/docker/Tutorials/GUI
 NOTE: To get a coloured bash, uncomment '#force_color_prompt=yes' line in ~/.bashrc
 NOTE: For ease in use, add the following to your ~/.bashrc file
