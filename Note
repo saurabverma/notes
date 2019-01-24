@@ -6,18 +6,17 @@ Check all images downloaded
 
 	docker image list
 
-Create a new container (by connecting the network with 'local_host',
-sharing display for GUI with 'local_host',
+Create (and run in background detached '-d', with interactive terminal connection '-it') a new container (with options as -
 sharing nvidia drivers with the container (requires nvidia-docker2 installed),
+by connecting the network with 'local_host',
 sharing a common folder 'shared_folder' and building on top of 'image_name')
 
-	docker run -it \
-	-e DISPLAY=$DISPLAY \
+	docker run -d -it \
 	--runtime=nvidia \
 	-v <shared_folder_host>:<shared_folder_container> \
 	--net=host \
-	<image_name>:<image_tag> \
-	bash
+	--name <container_name> \
+	<image_name>:<image_tag>
 
 Check all containers
 
@@ -51,11 +50,34 @@ Remove a docker image
 
 	docker rmi <image_name>:<image_tag>
 
+
+
+
+
+
+
+
+
+
 NOTE: To allow use of nvidia GPU usage inside the container,
 	add '--runtime=nvidia' to the 'docker run' command while creating a new container,
 	see details on https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-2.0)
-NOTE: Details of running GUI from within docker are well explained on http://wiki.ros.org/docker/Tutorials/GUI
+
 NOTE: To get a coloured bash, uncomment '#force_color_prompt=yes' line in ~/.bashrc
+
 NOTE: For ease in use, add the following to your ~/.bashrc file
 	alias docker_<tag>='docker start <container_name> && docker exec -it <container_name> bash'
 	alias docker_<tag>_stop='docker stop <container_name>'
+
+NOTE: Details of running GUI from within docker are well explained on http://wiki.ros.org/docker/Tutorials/GUI
+	In short, we need the following to be added to 'docker run' (although, rivz is still not supported)
+		--user="root" \
+		--env="DISPLAY" \
+		--runtime=nvidia \
+		--volume="/etc/group:/etc/group:ro" \
+		--volume="/etc/passwd:/etc/passwd:ro" \
+		--volume="/etc/shadow:/etc/shadow:ro" \
+		--volume="/etc/sudoers.d:/etc/sudoers.d:ro" \
+		--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+
+
