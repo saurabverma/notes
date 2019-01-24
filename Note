@@ -9,7 +9,9 @@ Check all images downloaded
 Create (and run in background detached '-d', with interactive terminal connection '-it') a new container (with options as -
 sharing nvidia drivers with the container (requires nvidia-docker2 installed),
 by connecting the network with 'local_host',
-sharing a common folder 'shared_folder' and building on top of 'image_name')
+sharing a common folder 'shared_folder',
+with the <container_name> being user specified and
+building on top of 'image_name')
 
 	docker run -d -it \
 	--runtime=nvidia \
@@ -73,11 +75,13 @@ NOTE: Details of running GUI from within docker are well explained on http://wik
 	In short, we need the following to be added to 'docker run' (although, rivz is still not supported)
 		--user="root" \
 		--env="DISPLAY" \
-		--runtime=nvidia \
 		--volume="/etc/group:/etc/group:ro" \
 		--volume="/etc/passwd:/etc/passwd:ro" \
 		--volume="/etc/shadow:/etc/shadow:ro" \
 		--volume="/etc/sudoers.d:/etc/sudoers.d:ro" \
 		--volume="/tmp/.X11-unix:/tmp/.X11-unix:rw" \
+	Beware that the above mentioned options allow for any code in docker to open a window on host PC,
+	which could be a big security threat due to root user access. At the same time,
+	if no root user access to the container, then the container might not behave properly.
 
 
