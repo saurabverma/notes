@@ -13,13 +13,16 @@ Setup the default folders
 Start the notebook at <port_number_host>
 	jupyter notebook --no-browser --allow-root --port=<port_number_host>
 
+Start with access to live matplot
+	xvfb-run -s "-screen <display_number> <image_width>x<image_height>x<pixel_color_depth>" jupyter notebook --no-browser --allow-root --port=<port_number_host>
+
 If Jupyter is runing on a remote host PC, attach its port to a desired port on the local guest PC (run the following command on the local guest PC)
 	ssh -N -L localhost:<port_number_guest>:localhost:<port_number_host> <user_name>@<host_IP> &
 
 Access the notebook at the following in a browser (<host_IP>='localhost' on local PC or an IP address {accessing using 'ifconfig | grep addr' bash command} on a remote PC on the same newtwork)
 	http://<host_IP>:<port_number_host>/
 
-Stop the 
+Stop the notebook
 	pkill -o jupyter
 
 
@@ -59,7 +62,7 @@ where the files placed in the docker root folder are
 	#!/bin/bash
 	
 	if ! jupyter notebook list | grep 'localhost:<port_number_host>'; then
-	        jupyter notebook --allow-root --no-browser --port=<port_number_host> &
+	        xvfb-run -s "-screen 0 1400x900x24" jupyter notebook --allow-root --no-browser --port=<port_number_host> &
 	fi
 
 2. /root/.jupyter_stop
