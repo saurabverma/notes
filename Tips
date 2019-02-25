@@ -1,0 +1,5 @@
+To automatically mount a drive at start-up, use the following command
+(update drive details i.e. /dev/sd?? using info from "lsblk" and mount localition)
+
+  /dev/<sda1> </media/mount_location> auto nosuid,nodev,nofail,x-gvfs-show 0 0
+
