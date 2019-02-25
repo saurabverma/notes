@@ -27,5 +27,8 @@ alias c='clear'
 alias r='reset'
 alias h='history'
 alias hg='history | grep'
+alias cpu_temp='watch -n 1 "sensors | grep high"'
+alias gpu_temp='watch -n 1 "nvidia-smi | grep W"'
+
 # Use 'Ctrl+r' for search of specific command in history
 
