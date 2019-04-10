@@ -4,6 +4,9 @@ Install jupyter
 	pip install jupyter
 	pip3 install jupyter
 
+Generate config file
+	jupyter notebook --generate-config
+
 Set the password for login
 	jupyter notebook password
 
