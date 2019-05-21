@@ -6,14 +6,15 @@ Check all images downloaded
 
 	docker image list
 
-Create (and run in background detached '-d', with interactive terminal connection '-it') a new container (with options as -
+Create (and run in background detached '-d', with interactive terminal connection '-it', to be removed after completion '--rm')
+a new container (with options as -
 sharing nvidia drivers with the container (requires nvidia-docker2 installed),
 by connecting the network with 'local_host',
 sharing a common folder 'shared_folder',
 with the <container_name> being user specified and
 building on top of 'image_name')
 
-	docker run -d -it \
+	docker run -d -it --rm \
 	--runtime=nvidia \
 	-v <shared_folder_host>:<shared_folder_container> \
 	--net=host \
