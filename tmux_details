@@ -1,0 +1,104 @@
+  Create a scenario-specific tmux conf file as follows
+
+# pre-requisite
+# -------------
+# install this package to allow copying of tmux buffer into system buffer/clipboard
+#    sudo apt-get install  xclip
+#
+# tmux commands
+# --------------
+# to run this tmux session in Ubuntu 14/tmux 1.8
+#    tmux new-session "tmux source-file ~/tmux_conf/tmux_1.conf"
+#
+# to run this tmux session in Ubuntu 16/tmux 2.1
+#    tmux
+#    C-b source-file tmux_1.conf
+#
+# You can also bind a key sequence once inside tmux to source-file. Place
+# the following contents into the file ~/.tmux.conf. The key sequence is
+# C-b M-d (or simply <CTRL>b<ALT>d)
+#    bind-key M-d source-file ~/tmux_conf/tmux_1.conf
+#
+# to detach the session
+#    C-b d
+# to reattach the session
+#    tmux attach -t temp_orss
+# to move panes
+#    C-b o
+# to move between windows
+#    C-b n  <-- next window
+#    C-b p  <-- previous window
+
+# change name of robot here
+ROBOTNAME=temp_robot
+
+# use mouse in Ubuntu 14/tmux 1.8
+#set -g mode-mouse on
+#set -g mouse-select-pane on
+#set -g mouse-resize-pane on
+#set -g mouse-select-window on
+
+# use mouse in Ubuntu 16/tmux 2.1
+set -g mouse on
+
+# to enable mouse copy/paste to system buffer
+# to copy text, go to the any window and press this sequence
+#     C-b [
+# now you are in VI mode, use the arrow keys and move to the start of text to copy
+# To select the text, press the key 'v'
+# Continue moving using the arrow keys to highlight the text to copy
+# To copy the text, press the 'y' key
+# Now your highlighted text is in system clipboard, can just use ctrl-V to paste into text editor
+# if you want to paste to another tmux buffer, press this sequence
+#     C-b ]
+setw -g mode-keys vi
+bind-key -t vi-copy 'v' begin-selection
+bind-key -t vi-copy 'y' copy-pipe "xclip -sel clip -i"
+
+# Highlight active window
+set-window-option -g window-status-current-bg red
+
+# history limit
+set -g history-limit 10000
+
+# Set status bar
+set -g status-bg black
+set -g status-fg white
+#set -g status-left ""
+#set -g status-right "#[fg=green]#H"
+
+# name the sesion
+rename-session $ROBOTNAME
+
+# pane 0 - roscore
+send-keys 'roscore' C-m
+
+# pane 1 - start launch 1
+split-window -v
+select-pane -t 1
+send-keys 'sleep 2; roslaunch package_1 launch_file_1.launch robotname:=' $ROBOTNAME C-m
+
+# pane 2 - start launch 2
+split-window -h
+select-pane -t 2
+send-keys 'sleep 4; roslaunch package_2 launch_file_2.launch robotname:=' $ROBOTNAME C-m
+
+# pane 3 - disable safety
+select-pane -t 0
+split-window -h
+send-keys 'sleep 6; rosrun rqt_reconfigure rqt_reconfigure' C-m
+
+
+
+
+
+
+
+
+
+
+  Create '~/.tmux.conf' file which binds to the above conf files based on online user input:
+
+bind-key M-r source-file ~/tmux_conf/tmux_1.conf
+bind-key M-d source-file ~/tmux_conf/tmux_2.conf
+bind-key M-s source-file ~/tmux_conf/tmux_3.conf
