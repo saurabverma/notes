@@ -30,5 +30,8 @@ alias hg='history | grep'
 alias cpu_temp='watch -n 1 "sensors | grep high"'
 alias gpu_temp='watch -n 1 "nvidia-smi | grep W"'
 
+alias copy='rsync -avP'
+alias copy_test='rsync -avP --dry-run --bwlimit=100'
+
 # Use 'Ctrl+r' for search of specific command in history
 
