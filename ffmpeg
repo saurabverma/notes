@@ -1,0 +1,10 @@
+
+	Bulk convert
+
+for i in *.webm; do ffmpeg -i "$i" -strict -2 "mp4/${i%.*}.mp4"; done
+
+
+
+	Clip (ss: start time; t: end time)
+
+ffmpeg -i original.mp4 -ss 00:00:03 -t 00:00:08 -async 1 -strict -2 clipped.mp4
