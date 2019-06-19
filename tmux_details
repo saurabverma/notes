@@ -86,7 +86,15 @@ send-keys 'sleep 4; roslaunch package_2 launch_file_2.launch robotname:=' $ROBOT
 # pane 3 - disable safety
 select-pane -t 0
 split-window -h
-send-keys 'sleep 6; rosrun rqt_reconfigure rqt_reconfigure' C-m
+send-keys 'sleep 6; roslaunch package_3 launch_file_3.launch' C-m
+
+
+
+# -----------------
+
+# Debug mode for localization, new-session for better vizualization
+new-window
+send-keys 'sleep 8; bash ~/map_n_loc/launch_files/run_loc_snap.sh' C-m
 
 
 
@@ -116,5 +124,6 @@ bind-key M-s source-file ~/tmux_conf/tmux_3.conf
 
   To run, enter tmux and hit 'Ctrl+b' and then 'Alt+r'
       replace 'r' with 'd', 's' or any other key which is input into the ~/.tmux.conf.
+  To switch between the windows, hit 'Ctrl+b' and then '0', '1', etc. for the window number.
   To switch between the sessions, hit 'Ctrl+b' and then 'Shift+0'.
   To open a pane/window into a new-session, highlight the pane with mouse selection, hit 'Ctrl+b' and then 'Shift+1'.
