@@ -102,3 +102,19 @@ send-keys 'sleep 6; rosrun rqt_reconfigure rqt_reconfigure' C-m
 bind-key M-r source-file ~/tmux_conf/tmux_1.conf
 bind-key M-d source-file ~/tmux_conf/tmux_2.conf
 bind-key M-s source-file ~/tmux_conf/tmux_3.conf
+
+
+
+
+
+
+
+
+
+
+
+
+  To run, enter tmux and hit 'Ctrl+b' and then 'Alt+r'
+      replace 'r' with 'd', 's' or any other key which is input into the ~/.tmux.conf.
+  To switch between the sessions, hit 'Ctrl+b' and then 'Shift+0'.
+  To open a pane/window into a new-session, highlight the pane with mouse selection, hit 'Ctrl+b' and then 'Shift+1'.
