@@ -27,11 +27,12 @@ alias c='clear'
 alias r='reset'
 alias h='history'
 alias hg='history | grep'
+alias copy='time rsync -avP'
+alias copy_test='rsync -avP --dry-run --bwlimit=100'
 alias cpu_temp='watch -n 1 "sensors | grep high"'
 alias gpu_temp='watch -n 1 "nvidia-smi | grep W"'
-
-alias copy='rsync -avP'
-alias copy_test='rsync -avP --dry-run --bwlimit=100'
+alias cpu_cool_status='watch -n 1 sudo liquidctl status'
+alias git_log='git log --color --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset"'
 
 # Use 'Ctrl+r' for search of specific command in history
 
