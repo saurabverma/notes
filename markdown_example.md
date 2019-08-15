@@ -61,6 +61,28 @@ for i in range(10):
     print(i)
 ~~~
 
+Writing the directory structure is relatively simple:
+```
+Top_dir/
+│
+├── Dir 1/                      -- explain dir 1
+│   │
+│   ├── File 1                  -- explain file 1
+│   │
+│   └── ...
+│
+├── Dir 2/                      -- explain dir 2
+│   │
+│   ├── Sub Dir 1/              -- explain sub dir 1
+│   │   │
+│   │   └── File 2              -- explain file 2
+│   │
+│   └── Sub Dir 2/              -- explain sub dir 2
+│       │
+│       └── File 3              -- explain file 3
+│
+└── File 4                      -- explain file 4
+```
 
 
 ### An h3 header ###
