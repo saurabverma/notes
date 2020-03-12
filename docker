@@ -6,16 +6,17 @@ Check all images downloaded
 
 	docker image list
 
-Create (and run in background detached '-d', with interactive terminal connection '-it', to be removed after completion '--rm')
-a new container (with options as -
-sharing nvidia drivers with the container (requires nvidia-docker2 installed),
+Create (and run in background detached '-d',
+with interactive terminal connection '-it',
+to be removed after completion '--rm')
+a new container (with option to use all available gpu (requires nvidia-docker installed),
 by connecting the network with 'local_host',
 sharing a common folder 'shared_folder',
 with the <container_name> being user specified and
 building on top of 'image_name')
 
 	docker run -d -it --rm \
-	--runtime=nvidia \
+	--gpus all \
 	-v <shared_folder_host>:<shared_folder_container> \
 	--net=host \
 	--name <container_name> \
@@ -53,6 +54,13 @@ Remove a docker image
 
 	docker rmi <image_name>:<image_tag>
 
+Save a docker image to a '.tar' file
+
+	docker save <image_name>:<image_tag> -o <output_file.tar>
+
+Load a docker image from a '.tar' file
+
+	docker load -i <output_file.tar>
 
 
 
@@ -62,9 +70,7 @@ Remove a docker image
 
 
 
-NOTE: To allow use of nvidia GPU usage inside the container,
-	add '--runtime=nvidia' to the 'docker run' command while creating a new container,
-	see details on https://github.com/nvidia/nvidia-docker/wiki/Installation-(version-2.0)
+
 
 NOTE: To get a coloured bash, uncomment '#force_color_prompt=yes' line in ~/.bashrc
 
