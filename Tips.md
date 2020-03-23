@@ -16,3 +16,12 @@ which shows something like `  <PID> ?        00:00:10 nautilus`, then second, re
 ```
 sudo kill -9 PID
 ```
+
+
+
+
+
+3. For installation of gtsam, typically usage of system eigen is preferred over regular `cmake ..`
+```
+cmake -DGTSAM_USE_SYSTEM_EIGEN=ON ..
+```
