@@ -25,3 +25,22 @@ sudo kill -9 PID
 ```
 cmake -DGTSAM_USE_SYSTEM_EIGEN=ON ..
 ```
+
+
+
+3. `chmod` with Letters
+```
+Usage: chmod {options} filename
+```
+| Options | Definition |
+|---|---|
+| u | owner |
+| g | group |
+| o | other |
+| a | all (same as ugo) |
+| x | execute |
+| w | write |
+| r | read |
+| + | add permission |
+| - | remove permission |
+| = | set permission |
