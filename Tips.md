@@ -28,7 +28,11 @@ cmake -DGTSAM_USE_SYSTEM_EIGEN=ON ..
 
 
 
-3. `chmod` with Letters
+4. Alias remote IP address can be added to `/etc/hosts`
+
+
+
+5. `chmod` with Letters
 ```
 Usage: chmod {options} filename
 ```
