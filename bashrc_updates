@@ -18,9 +18,13 @@ function scp_get_remote
 	scp -r <use_name>@<remote_host_IP>:$1 $2
 }
 # Put a file: 'scp -r <local_file_name> <use_name>@<remote_host_IP>:<remote_folder_name>'
-function scp_put_remote
+function scp_put_folders_remote
 {
 	scp -r $1 <use_name>@<remote_host_IP>:$2
+}
+function scp_put_files_remote
+{
+	scp $1 <use_name>@<remote_host_IP>:$2
 }
 
 alias c='clear'
