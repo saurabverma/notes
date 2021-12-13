@@ -20,8 +20,8 @@ sudo swapoff -a
 Create tomb file (of size say, 100 MB) and key.
 
 ```bash
-sudo tomb dig -s 100 data.tomb
-sudo tomb forge data.tomb.key
+tomb dig -s 100 data.tomb
+tomb forge data.tomb.key
 ```
 
 ## Lock (one-time after creation)
@@ -29,12 +29,13 @@ sudo tomb forge data.tomb.key
 Lock the tomb files using respective key.
 
 ```bash
-sudo tomb lock data.tomb -k data.tomb.key
+tomb lock data.tomb -k data.tomb.key
 ```
 
 # Open
 
 Prior to working with the tomb file, we must open and mount it as follows.
+NOTE: virtual disk mounting requires sudo support.
 
 ```bash
 sudo tomb open data.tomb -k data.tomb.key
@@ -43,11 +44,12 @@ sudo tomb open data.tomb -k data.tomb.key
 NOTE: Opening a tomb also mentions the mounting location which is required for copying data in-out the tomb file.
 Ubuntu users may also use `Disk Usage Analyzer` app to find out the mount location, once the file is open.
 An alternate approach is the following which lists all available tomb files, along with essential details.
+Typically, the disk is mounted on `/media/` with same name as tomb file.
 
 ## List (optional)
 
 ```bash
-sudo tomb list
+tomb list
 ```
 
 ## Copy data
@@ -56,14 +58,14 @@ Copy data inside and outside the virtual drive represented by the tomb file (mou
 NOTE: The tomb file must be big enough to hold the data, otherwise copy may fail.
 
 ```bash
-sudo cp -rv data/* -t /media/data/
+cp -rv imp_folder/* -t /media/data/
 ```
 
 ## Close
 
 ```bash
-sudo tomb close
-sudo tomb close all
+tomb close
+tomb close all
 ```
 
 ## Forced close
@@ -71,12 +73,15 @@ sudo tomb close all
 In case a process is ongoing but user needs to close the file, apply forced close command as follows.
 
 ```bash
-sudo tomb slam
-sudo tomb slam all
+tomb slam
+tomb slam all
 ```
 
 ## Resize
 
+To increase the size (to say, 1 TB), run the following.
+NOTE: Tomb size can never be reduced!
+
 ```bash
-sudo tomb dig -s 1000000 data.tomb
+sudo tomb resize -s 1000000 data.tomb -k data.tomb.key
 ```
