@@ -29,7 +29,7 @@ tomb forge data.tomb.key
 Lock the tomb files using respective key.
 
 ```bash
-tomb lock data.tomb -k data.tomb.key
+sudo tomb lock data.tomb -k data.tomb.key
 ```
 
 # Open
