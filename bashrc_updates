@@ -36,6 +36,7 @@ alias copy_test='rsync -avP --dry-run --bwlimit=100'
 alias cpu_temp='watch -n 1 "sensors | grep high"'
 alias gpu_temp='watch -n 1 "nvidia-smi | grep W"'
 alias cpu_cool_status='watch -n 1 sudo liquidctl status'
+alias speed='watch -n1 "cat /proc/cpuinfo | grep MHz"'
 alias git_log='git log --color --graph --pretty=format:"%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset"'
 alias update_all='sudo apt update -y && sudo apt upgrade -y && sudo apt autoremove -y && sudo snap refresh'
 
