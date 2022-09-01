@@ -32,7 +32,11 @@ cmake -DGTSAM_USE_SYSTEM_EIGEN=ON ..
 
 
 
-5. `chmod` with Letters
+5. Startup commands to be added to `/etc/rc.local` (note that command should not include `sudo`)
+
+
+
+6. `chmod` with Letters
 ```
 Usage: chmod {options} filename
 ```
