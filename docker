@@ -11,6 +11,7 @@ with interactive terminal connection '-it',
 to be removed after completion '--rm')
 a new container (with option to use all available gpu (requires nvidia-docker installed),
 by connecting the network with 'local_host',
+increasing the shared memory (say, to 16 GB),
 sharing a common folder 'shared_folder',
 with the <container_name> being user specified and
 building on top of 'image_name')
@@ -19,6 +20,7 @@ building on top of 'image_name')
 	--gpus all \
 	-v <shared_folder_host>:<shared_folder_container> \
 	--net=host \
+	--shm-size=16g \
 	--name <container_name> \
 	<image_name>:<image_tag>
 
