@@ -8,7 +8,7 @@
 
 
 
-2. If file-explorer is not functional, first get the PID for 'nautilus'
+2. If file-explorer is not functional, first get the PID for `nautilus`
 ```
 ps -A | grep nautilus
 ```
@@ -17,7 +17,11 @@ which shows something like `  <PID> ?        00:00:10 nautilus`, then second, re
 sudo kill -9 PID
 ```
 
-
+2a. To instantly kill the function, in this case `nautilus`, use the following
+```
+sudo pkill -9 nautilus
+```
+This command is really useful if too many PID need to be killed in one-shot.
 
 
 
