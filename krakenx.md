@@ -18,13 +18,14 @@ and add the following
 ```
 [Unit]
 Description=krakenx automatic configuration
+After=multi-user.target
 
 [Service]
-Type=simple
+Type=oneshot
 ExecStart=/usr/bin/env colctl -m Breathing -as 0 -c 255,255,255 -c0 255,255,255 --fan_speed "(34,25),(35,50),(36,75),(37,90),(38,100)" --pump_speed "(34,60),(35,70),(36,80),(37,90),(38,100)"
 
 [Install]
-WantedBy=default.target
+WantedBy=multi-user.target
 ```
 
 ## Use without sudo
@@ -38,6 +39,6 @@ and add the following Rule
 ```
 SUBSYSTEM=="usb", ATTR{idVendor}=="1e71", ATTR{idProduct}=="170e", MODE="0666"
 ```
-Replace `1e71` and `170e` with actual device ID available via running `lsusb` and looking for somethign like `NZXT Kraken X`.
+Replace `1e71` and `170e` with actual device ID available via running `lsusb` and looking for something like `NZXT Kraken X`.
 
 Now, reboot system to see the system working.
