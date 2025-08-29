@@ -27,6 +27,7 @@ ExecStart=/usr/bin/env colctl -m Breathing -as 0 -c 255,255,255 -c0 255,255,255 
 [Install]
 WantedBy=multi-user.target
 ```
+Replace `/usr/bin/env colctl` with the output of `which colctl` to record the correct path to KrakenX driver.
 
 ## Use without sudo
 
